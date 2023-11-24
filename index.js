@@ -33,3 +33,6 @@
 
 //   console.log("numOfRow" + gridRow);
 // }
+
+const txtNode = document.querySelector(".text");
+console.log(txtNode.offsetWidth);
