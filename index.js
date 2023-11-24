@@ -2,8 +2,9 @@ function handleResize() {
   //   const windowWidth = window.innerWidth - 128;
   // console.log(windowWidth);
 
-  const div = document.querySelector(".grid-container");
+  const gridDiv = document.querySelector(".grid-container");
   const gridItem = document.querySelector(".item");
+  const textDiv = document.querySelector(".text-div");
   const textNode = document.querySelector(".text");
 
   //   const numOfCol = Math.round(windowWidth / 100);
@@ -16,8 +17,9 @@ function handleResize() {
   const textHeight = textNode.offsetHeight;
   const itemHeight = gridItem.offsetHeight;
 
-  if (textHeight % itemHeight > 5) {
-    let numOfRow = Math.ceil(textHeight / itemHeight);
+  //   64 --> padding (4rem), 5 --> ignoring the minimum difference
+  if (Math.abs(textHeight + 64 - itemHeight) > 2) {
+    let numOfRow = Math.ceil((textHeight + 64) / itemHeight);
     numOfRow += 2;
     let gridRow = "";
 
@@ -25,9 +27,12 @@ function handleResize() {
       gridRow += " 1fr";
     }
 
-    div.style.gridTemplateRows = gridRow;
-    textNode.style.gridArea = "2 / 2 / 4 / 9";
+    gridDiv.style.gridTemplateRows = gridRow;
+    textDiv.style.gridArea = `2 / 2 / ${numOfRow} / 9`;
+    console.log("text size changed");
+    console.log(Math.abs(textHeight + 64 - itemHeight));
   }
-  console.log("th " + textHeight);
+
+  console.log("th " + parseInt(textHeight + 64));
   console.log("gh " + itemHeight);
 }

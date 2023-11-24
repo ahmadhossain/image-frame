@@ -37,7 +37,7 @@ p {
   /* height: 100px; */
 }
 
-.text {
+.text-div {
   padding: 2rem;
   /* grid-column: 2/9; */
   grid-area: 2 / 2 / 2 / 9;
