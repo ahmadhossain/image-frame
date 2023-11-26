@@ -9,24 +9,15 @@ function handleResize() {
   //   const numOfCol = Math.round(windowWidth / 100);
 
   const textHeight = textNode.offsetHeight;
+  const gridWidth = textNode.offsetWidth;
   const itemHeight = gridItem.offsetHeight;
 
   //   64 --> padding (4rem)
-  if (Math.abs(textHeight + 64 - itemHeight) > 0) {
+  if (Math.abs(textHeight + 64 - itemHeight) > 0.5) {
     let numOfRow = Math.ceil((textHeight + 64) / itemHeight);
     numOfRow += 2;
     let gridRow = "";
     let gridCol = "";
-
-    console.log(extraDiv);
-
-    if (numOfRow === 4) {
-      extraDiv[0].style.display = "flex";
-      extraDiv[1].style.display = "flex";
-    } else if (numOfRow === 3) {
-      extraDiv[0].style.display = "none";
-      extraDiv[1].style.display = "none";
-    }
 
     for (let i = 0; i < numOfRow; i++) gridRow += " 1fr";
     //  updating Row
@@ -34,29 +25,52 @@ function handleResize() {
     textDiv.style.gridRow = `2 / ${numOfRow} `;
 
     // updation Column
-    if (itemHeight <= 60) {
-      for (let i = 0; i < 8; i++) gridCol += " minmax(50px, 1fr)";
+    if (gridWidth <= 350) {
+      for (let i = 0; i < 8; i++) gridCol += " minmax(10px, 1fr)";
 
       gridDiv.style.gridTemplateColumns = gridCol;
       textDiv.style.gridColumn = `2 / 8`;
-    } else if (itemHeight > 70 && itemHeight < 85) {
+
+      if (numOfRow === 5) {
+        extraDiv[0].style.display = "none";
+        extraDiv[1].style.display = "none";
+      } else {
+        extraDiv[0].style.display = "flex";
+        extraDiv[1].style.display = "flex";
+      }
+      console.log("block: < 60");
+    } else if (gridWidth > 350 && gridWidth < 686) {
       for (let i = 0; i < 9; i++) gridCol += " minmax(50px, 1fr)";
 
       gridDiv.style.gridTemplateColumns = gridCol;
       textDiv.style.gridColumn = `2 / 9`;
 
-      // extraDiv[0].style.display = "none";
-      // extraDiv[1].style.display = "none";
-    } else if (itemHeight > 95) {
+      if (numOfRow === 5) {
+        extraDiv[0].style.display = "flex";
+        extraDiv[1].style.display = "flex";
+      } else {
+        extraDiv[0].style.display = "none";
+        extraDiv[1].style.display = "none";
+      }
+      console.log("block: > 70 && < 85");
+    } else {
       for (let i = 0; i < 10; i++) gridCol += " minmax(50px, 1fr)";
 
       gridDiv.style.gridTemplateColumns = gridCol;
       textDiv.style.gridColumn = `2 / 10`;
-    }
 
-    console.log(Math.abs(textHeight + 64 - itemHeight));
+      if (numOfRow == 4) {
+        extraDiv[0].style.display = "flex";
+        extraDiv[1].style.display = "flex";
+      } else {
+        extraDiv[0].style.display = "none";
+        extraDiv[1].style.display = "none";
+      }
+      console.log("block: > 95");
+    }
+    // console.log(Math.abs(textHeight + 64 - itemHeight));
   }
 
-  console.log("th " + parseInt(textHeight + 64));
-  console.log("gh " + itemHeight);
+  // console.log("th " + parseInt(textHeight + 64));
+  // console.log("gh " + itemHeight);
 }

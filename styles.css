@@ -15,17 +15,23 @@ p {
 }
 
 .img-container {
-  margin: 4rem;
+  margin: 10%;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, minmax(50px, 1fr));
-  grid-template-rows: repeat(3, minmax(50px, 1fr));
+  grid-template-columns: repeat(8, minmax(30px, 1fr));
+  grid-template-rows: repeat(3, minmax(30px, 1fr));
   gap: 1px;
   padding: 1px;
   background-color: #2196f3;
 }
+
+/* @media (min-width: 350px) {
+  .img-container {
+    margin: 4rem;
+  }
+} */
 
 .item {
   aspect-ratio: 1;
