@@ -1,10 +1,34 @@
-function handleResize() {
-  const gridDiv = document.querySelector(".grid-container");
-  const gridItem = document.querySelector(".item");
-  const textDiv = document.querySelector(".text-div");
-  const textNode = document.querySelector(".text");
-  const extraDiv = document.querySelectorAll(".extra");
+const gridDiv = document.querySelector(".grid-container");
+const gridItem = document.querySelector(".item");
+const textDiv = document.querySelector(".text-div");
+const textNode = document.querySelector(".text");
+const extraDiv = document.querySelectorAll(".extra");
+const img1 = gridDiv.children[1];
+const img2 = gridDiv.children[2];
 
+img1.classList.add("move-right");
+img2.classList.add("move-left");
+setTimeout(() => {
+  img1.classList.remove("move-right");
+  img2.classList.remove("move-left");
+  img2.remove();
+  gridDiv.insertBefore(img2, gridDiv.children[1]);
+}, 1500);
+
+setInterval(() => {
+  let img1 = gridDiv.children[1];
+  let img2 = gridDiv.children[2];
+  img1.classList.add("move-right");
+  img2.classList.add("move-left");
+  setTimeout(() => {
+    img1.classList.remove("move-right");
+    img2.classList.remove("move-left");
+    img2.remove();
+    gridDiv.insertBefore(img2, gridDiv.children[1]);
+  }, 1500);
+}, 1500);
+
+function handleResize() {
   //   const windowWidth = window.innerWidth - 128;
   //   const numOfCol = Math.round(windowWidth / 100);
 
@@ -38,7 +62,6 @@ function handleResize() {
         extraDiv[0].style.display = "flex";
         extraDiv[1].style.display = "flex";
       }
-      console.log("block: < 60");
     } else if (gridWidth > 350 && gridWidth < 686) {
       for (let i = 0; i < 9; i++) gridCol += " minmax(50px, 1fr)";
 
@@ -52,7 +75,6 @@ function handleResize() {
         extraDiv[0].style.display = "none";
         extraDiv[1].style.display = "none";
       }
-      console.log("block: > 70 && < 85");
     } else {
       for (let i = 0; i < 10; i++) gridCol += " minmax(50px, 1fr)";
 
@@ -66,7 +88,6 @@ function handleResize() {
         extraDiv[0].style.display = "none";
         extraDiv[1].style.display = "none";
       }
-      console.log("block: > 95");
     }
     // console.log(Math.abs(textHeight + 64 - itemHeight));
   }

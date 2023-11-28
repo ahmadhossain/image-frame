@@ -31,7 +31,7 @@ p {
   grid-template-rows: repeat(3, minmax(30px, 1fr));
   /* gap: 1px; */
   /* padding: 1px; */
-  background-color: #2196f3;
+  transition: all 10s;
 }
 
 .item {
@@ -43,7 +43,7 @@ p {
 
 .text-div {
   padding: 2rem;
-  background-color: #292524;
+  background-color: #18181b;
   grid-area: 2 / 2 / 2 / 10;
   text-align: center;
 }
@@ -62,4 +62,72 @@ p {
 
 .show {
   display: flex;
+}
+
+@keyframes color-shape-movement {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  /* 25% {
+    left: 200px;
+    top: 0px;
+  }
+  50% {
+    left: 200px;
+    top: 200px;
+  }
+  75% {
+    left: 0px;
+    top: 200px;
+  } */
+  100% {
+    left: 96px;
+    top: 0px;
+  }
+}
+@keyframes color-shape-movement-2 {
+  0% {
+    right: 0px;
+    /* top: 0px; */
+  }
+  /* 25% {
+    left: 200px;
+    top: 0px;
+  }
+  50% {
+    left: 200px;
+    top: 200px;
+  }
+  75% {
+    left: 0px;
+    top: 200px;
+  } */
+  100% {
+    right: 96px;
+    /* top: 20px; */
+  }
+}
+
+.move-right {
+  /* height: 200px; */
+  /* width: 350px; */
+  position: relative;
+  -webkit-animation-name: color-shape-movement;
+  -webkit-animation-duration: 3ms;
+  animation-name: color-shape-movement;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  z-index: 1;
+}
+
+.move-left {
+  /* height: 200px; */
+  /* width: 350px; */
+  position: relative;
+  -webkit-animation-name: color-shape-movement-2;
+  -webkit-animation-duration: 3ms;
+  animation-name: color-shape-movement-2;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
 }
