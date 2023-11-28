@@ -67,51 +67,39 @@ p {
 @keyframes color-shape-movement {
   0% {
     left: 0px;
-    top: 0px;
   }
-  /* 25% {
-    left: 200px;
-    top: 0px;
-  }
-  50% {
-    left: 200px;
-    top: 200px;
-  }
-  75% {
-    left: 0px;
-    top: 200px;
-  } */
   100% {
     left: 96px;
-    top: 0px;
   }
 }
+
 @keyframes color-shape-movement-2 {
   0% {
     right: 0px;
-    /* top: 0px; */
   }
-  /* 25% {
-    left: 200px;
-    top: 0px;
-  }
-  50% {
-    left: 200px;
-    top: 200px;
-  }
-  75% {
-    left: 0px;
-    top: 200px;
-  } */
   100% {
     right: 96px;
-    /* top: 20px; */
+  }
+}
+
+@keyframes move-down {
+  0% {
+    top: 0px;
+  }
+  100% {
+    top: 96px;
+  }
+}
+@keyframes move-up {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: 96px;
   }
 }
 
 .move-right {
-  /* height: 200px; */
-  /* width: 350px; */
   position: relative;
   -webkit-animation-name: color-shape-movement;
   -webkit-animation-duration: 3ms;
@@ -122,12 +110,28 @@ p {
 }
 
 .move-left {
-  /* height: 200px; */
-  /* width: 350px; */
   position: relative;
   -webkit-animation-name: color-shape-movement-2;
   -webkit-animation-duration: 3ms;
   animation-name: color-shape-movement-2;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+
+.move-up {
+  position: relative;
+  -webkit-animation-name: move-up;
+  -webkit-animation-duration: 3ms;
+  animation-name: move-up;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+
+.move-down {
+  position: relative;
+  -webkit-animation-name: move-down;
+  -webkit-animation-duration: 3ms;
+  animation-name: move-down;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
 }

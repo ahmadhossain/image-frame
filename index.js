@@ -1,21 +1,21 @@
+const gridDiv = document.querySelector(".grid-container");
+const gridItem = document.querySelector(".item");
+const textDiv = document.querySelector(".text-div");
+const textNode = document.querySelector(".text");
+const extraDiv = document.querySelectorAll(".extra");
+
 adjustRowColumn();
 imgSwapAnimation();
 
 setInterval(() => {
   imgSwapAnimation();
-}, 1500);
+}, 3500);
 
 function handleResize() {
   adjustRowColumn();
 }
 
 function adjustRowColumn() {
-  const gridDiv = document.querySelector(".grid-container");
-  const gridItem = document.querySelector(".item");
-  const textDiv = document.querySelector(".text-div");
-  const textNode = document.querySelector(".text");
-  const extraDiv = document.querySelectorAll(".extra");
-
   const textHeight = textNode.offsetHeight;
   const itemHeight = gridItem.offsetHeight;
   const gridWidth = textNode.offsetWidth;
@@ -76,17 +76,61 @@ function adjustRowColumn() {
 }
 
 function imgSwapAnimation() {
-  const gridDiv = document.querySelector(".grid-container");
-  const img1 = gridDiv.children[1];
-  const img2 = gridDiv.children[2];
+  const gridWidth = textNode.offsetWidth;
+  const i = Math.floor(1 + Math.random() * 21);
+  let mn, mx;
+  if (gridWidth <= 350) {
+    mn = 8;
+    mx = 14;
+  } else if (gridWidth > 350 && gridWidth < 686) {
+    mn = 9;
+    mx = 14;
+  } else {
+    mn = 10;
+    mx = 12;
+  }
 
-  img1.classList.add("move-right");
-  img2.classList.add("move-left");
+  console.log(i);
+  if (i >= mn && i < mx) {
+    const img1 = gridDiv.children[i];
+    const img2 = gridDiv.children[i + 2];
 
-  setTimeout(() => {
-    img1.classList.remove("move-right");
-    img2.classList.remove("move-left");
-    img2.remove();
-    gridDiv.insertBefore(img2, gridDiv.children[1]);
-  }, 1500);
+    img1.classList.add("move-down");
+    img2.classList.add("move-up");
+
+    setTimeout(() => {
+      img1.classList.remove("move-down");
+      img2.classList.remove("move-up");
+      img2.remove();
+      gridDiv.insertBefore(img2, gridDiv.children[i]);
+      gridDiv.insertBefore(img1, gridDiv.children[i + 3]);
+    }, 1500);
+  } else if (i === mx) {
+    const img1 = gridDiv.children[i];
+    const img2 = gridDiv.children[22];
+
+    img1.classList.add("move-down");
+    img2.classList.add("move-up");
+
+    setTimeout(() => {
+      img1.classList.remove("move-down");
+      img2.classList.remove("move-up");
+      img2.remove();
+      gridDiv.insertBefore(img2, gridDiv.children[i]);
+      gridDiv.appendChild(img1);
+    }, 1500);
+  } else {
+    const img1 = gridDiv.children[i];
+    const img2 = gridDiv.children[i + 1];
+
+    img1.classList.add("move-right");
+    img2.classList.add("move-left");
+
+    setTimeout(() => {
+      img1.classList.remove("move-right");
+      img2.classList.remove("move-left");
+      img2.remove();
+      gridDiv.insertBefore(img2, gridDiv.children[i]);
+    }, 1500);
+  }
 }
