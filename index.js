@@ -1,41 +1,24 @@
-const gridDiv = document.querySelector(".grid-container");
-const gridItem = document.querySelector(".item");
-const textDiv = document.querySelector(".text-div");
-const textNode = document.querySelector(".text");
-const extraDiv = document.querySelectorAll(".extra");
-const img1 = gridDiv.children[1];
-const img2 = gridDiv.children[2];
-
-img1.classList.add("move-right");
-img2.classList.add("move-left");
-setTimeout(() => {
-  img1.classList.remove("move-right");
-  img2.classList.remove("move-left");
-  img2.remove();
-  gridDiv.insertBefore(img2, gridDiv.children[1]);
-}, 1500);
+adjustRowColumn();
+imgSwapAnimation();
 
 setInterval(() => {
-  let img1 = gridDiv.children[1];
-  let img2 = gridDiv.children[2];
-  img1.classList.add("move-right");
-  img2.classList.add("move-left");
-  setTimeout(() => {
-    img1.classList.remove("move-right");
-    img2.classList.remove("move-left");
-    img2.remove();
-    gridDiv.insertBefore(img2, gridDiv.children[1]);
-  }, 1500);
+  imgSwapAnimation();
 }, 1500);
 
 function handleResize() {
-  //   const windowWidth = window.innerWidth - 128;
-  //   const numOfCol = Math.round(windowWidth / 100);
+  adjustRowColumn();
+}
+
+function adjustRowColumn() {
+  const gridDiv = document.querySelector(".grid-container");
+  const gridItem = document.querySelector(".item");
+  const textDiv = document.querySelector(".text-div");
+  const textNode = document.querySelector(".text");
+  const extraDiv = document.querySelectorAll(".extra");
 
   const textHeight = textNode.offsetHeight;
-  const gridWidth = textNode.offsetWidth;
   const itemHeight = gridItem.offsetHeight;
-
+  const gridWidth = textNode.offsetWidth;
   //   64 --> padding (4rem)
   if (Math.abs(textHeight + 64 - itemHeight) > 0.5) {
     let numOfRow = Math.ceil((textHeight + 64) / itemHeight);
@@ -89,9 +72,21 @@ function handleResize() {
         extraDiv[1].style.display = "none";
       }
     }
-    // console.log(Math.abs(textHeight + 64 - itemHeight));
   }
+}
 
-  // console.log("th " + parseInt(textHeight + 64));
-  // console.log("gh " + itemHeight);
+function imgSwapAnimation() {
+  const gridDiv = document.querySelector(".grid-container");
+  const img1 = gridDiv.children[1];
+  const img2 = gridDiv.children[2];
+
+  img1.classList.add("move-right");
+  img2.classList.add("move-left");
+
+  setTimeout(() => {
+    img1.classList.remove("move-right");
+    img2.classList.remove("move-left");
+    img2.remove();
+    gridDiv.insertBefore(img2, gridDiv.children[1]);
+  }, 1500);
 }
