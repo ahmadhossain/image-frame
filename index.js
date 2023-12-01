@@ -76,21 +76,28 @@ function adjustRowColumn() {
 }
 
 function imgSwapAnimation() {
+  const textHeight = textNode.offsetHeight;
+  const itemHeight = gridItem.offsetHeight;
   const gridWidth = textNode.offsetWidth;
   const i = Math.floor(1 + Math.random() * 21);
-  let mn, mx;
+  // const i = 12;
+
+  let r, c;
   if (gridWidth <= 350) {
-    mn = 8;
-    mx = 14;
+    c = 8;
   } else if (gridWidth > 350 && gridWidth < 686) {
-    mn = 9;
-    mx = 14;
+    c = 9;
   } else {
-    mn = 10;
-    mx = 12;
+    c = 10;
   }
 
-  console.log(i);
+  r = Math.ceil((textHeight + 64) / itemHeight);
+  let mn = c;
+  let mx = c + 2 * r;
+  let last = mx + c;
+
+  console.log(i, "i");
+
   if (i >= mn && i < mx) {
     const img1 = gridDiv.children[i];
     const img2 = gridDiv.children[i + 2];
@@ -107,7 +114,7 @@ function imgSwapAnimation() {
     }, 1500);
   } else if (i === mx) {
     const img1 = gridDiv.children[i];
-    const img2 = gridDiv.children[22];
+    const img2 = gridDiv.children[last];
 
     img1.classList.add("move-down");
     img2.classList.add("move-up");
