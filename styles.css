@@ -1,3 +1,8 @@
+:root {
+  --x: 0px;
+  --y: 0px;
+}
+
 body {
   margin: 0;
 }
@@ -64,74 +69,21 @@ p {
   display: flex;
 }
 
-@keyframes move-right {
+@keyframes move {
   0% {
-    left: 0px;
+    transform: translate(0px, 0px);
   }
   100% {
-    left: 96px;
+    transform: translate(var(--x), var(--y));
   }
 }
 
-@keyframes move-left {
-  0% {
-    right: 0px;
-  }
-  100% {
-    right: 96px;
-  }
-}
-
-@keyframes move-down {
-  0% {
-    top: 0px;
-  }
-  100% {
-    top: 96px;
-  }
-}
-@keyframes move-up {
-  0% {
-    bottom: 0px;
-  }
-  100% {
-    bottom: 96px;
-  }
-}
-
-.move-right {
+.move {
   position: relative;
-  -webkit-animation-name: move-right;
-  -webkit-animation-duration: 3ms;
-  animation-name: move-right;
+  -webkit-animation-name: move;
+  /* -webkit-animation-duration: 3ms; */
+  animation-name: move;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
   z-index: 1;
-}
-
-.move-left {
-  position: relative;
-  -webkit-animation-name: move-left;
-  -webkit-animation-duration: 3ms;
-  animation-name: move-left;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
-}
-
-.move-up {
-  position: relative;
-  -webkit-animation-name: move-up;
-  -webkit-animation-duration: 3ms;
-  animation-name: move-up;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
-}
-
-.move-down {
-  position: relative;
-  -webkit-animation-name: move-down;
-  -webkit-animation-duration: 3ms;
-  animation-name: move-down;
-  animation-duration: 1.5s;
-  animation-iteration-count: 1;
 }
