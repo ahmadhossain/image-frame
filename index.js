@@ -73,6 +73,11 @@ function adjustRowColumn() {
       }
     }
   }
+
+  // changing the image position to move
+  var root = document.querySelector(":root");
+  root.style.setProperty("--x", itemHeight + "px");
+  root.style.setProperty("--y", itemHeight + "px");
 }
 
 function imgSwapAnimation() {
@@ -81,7 +86,9 @@ function imgSwapAnimation() {
   const gridWidth = textNode.offsetWidth;
 
   const i = Math.floor(1 + Math.random() * 21);
-  // const i = 14;
+  // const i = 10;
+  console.log(i, "random number");
+
   let r, c;
   if (gridWidth <= 350) {
     c = 8;
@@ -96,22 +103,17 @@ function imgSwapAnimation() {
   let mx = c + 2 * r;
   let last = mx + c;
 
-  console.log(i, "i");
-
   const img1 = gridDiv.children[i];
 
   if (i >= mn && i < mx) {
     const img2 = gridDiv.children[i + 2];
 
-    img1.classList.add("move");
-    img1.style.setProperty("--y", itemHeight + "px");
-
-    img2.classList.add("move");
-    img2.style.setProperty("--y", -itemHeight + "px");
+    img1.classList.add("down");
+    img2.classList.add("up");
 
     setTimeout(() => {
-      img1.classList.remove("move");
-      img2.classList.remove("move");
+      img1.classList.remove("down");
+      img2.classList.remove("up");
       img2.remove();
       gridDiv.insertBefore(img2, gridDiv.children[i]);
       gridDiv.insertBefore(img1, gridDiv.children[i + 3]);
@@ -119,15 +121,12 @@ function imgSwapAnimation() {
   } else if (i === mx) {
     const img2 = gridDiv.children[last];
 
-    img1.classList.add("move");
-    img1.style.setProperty("--y", itemHeight + "px");
-
-    img2.classList.add("move");
-    img2.style.setProperty("--y", -itemHeight + "px");
+    img1.classList.add("down");
+    img2.classList.add("up");
 
     setTimeout(() => {
-      img1.classList.remove("move");
-      img2.classList.remove("move");
+      img1.classList.remove("down");
+      img2.classList.remove("up");
       img2.remove();
       gridDiv.insertBefore(img2, gridDiv.children[i]);
       gridDiv.appendChild(img1);
@@ -135,15 +134,12 @@ function imgSwapAnimation() {
   } else {
     const img2 = gridDiv.children[i + 1];
 
-    img1.classList.add("move");
-    img1.style.setProperty("--x", itemHeight + "px");
-
-    img2.classList.add("move");
-    img2.style.setProperty("--x", -itemHeight + "px");
+    img1.classList.add("right");
+    img2.classList.add("left");
 
     setTimeout(() => {
-      img1.classList.remove("move");
-      img2.classList.remove("move");
+      img1.classList.remove("right");
+      img2.classList.remove("left");
       img2.remove();
       gridDiv.insertBefore(img2, gridDiv.children[i]);
     }, 1000);

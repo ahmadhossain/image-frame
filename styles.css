@@ -1,6 +1,6 @@
 :root {
-  --x: 0px;
-  --y: 0px;
+  --x: 130px;
+  --y: 130px;
 }
 
 body {
@@ -18,14 +18,6 @@ p {
   margin: 0;
 }
 
-.containter {
-  /* margin: auto; */
-}
-
-.frame {
-  /* margin: 4rem; */
-}
-
 .img-container {
   margin: 10%;
 }
@@ -34,8 +26,6 @@ p {
   display: grid;
   grid-template-columns: repeat(8, minmax(30px, 1fr));
   grid-template-rows: repeat(3, minmax(30px, 1fr));
-  /* gap: 1px; */
-  /* padding: 1px; */
   transition: all 10s;
 }
 
@@ -69,20 +59,73 @@ p {
   display: flex;
 }
 
-@keyframes move {
+@keyframes right {
   0% {
     transform: translate(0px, 0px);
   }
   100% {
-    transform: translate(var(--x), var(--y));
+    transform: translate(var(--x), 0px);
   }
 }
 
-.move {
+@keyframes left {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(calc(var(--x) * -1), 0px);
+  }
+}
+
+@keyframes up {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(0px, calc(var(--y) * -1));
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(0px, var(--y));
+  }
+}
+
+.right {
   position: relative;
-  -webkit-animation-name: move;
-  /* -webkit-animation-duration: 3ms; */
-  animation-name: move;
+  -webkit-animation-name: right;
+  animation-name: right;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  z-index: 1;
+}
+
+.left {
+  position: relative;
+  -webkit-animation-name: left;
+  animation-name: left;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  z-index: 1;
+}
+
+.up {
+  position: relative;
+  -webkit-animation-name: up;
+  animation-name: up;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  z-index: 1;
+}
+
+.down {
+  position: relative;
+  -webkit-animation-name: down;
+  animation-name: down;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
   z-index: 1;
