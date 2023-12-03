@@ -1,10 +1,12 @@
 :root {
-  --x: 130px;
-  --y: 130px;
+  --x: 125px;
+  --y: 125px;
 }
 
 body {
   margin: 0;
+  font-family: "League Spartan", sans-serif;
+  font-size: large;
 }
 
 img {
@@ -27,6 +29,7 @@ p {
   grid-template-columns: repeat(8, minmax(30px, 1fr));
   grid-template-rows: repeat(3, minmax(30px, 1fr));
   transition: all 10s;
+  background-color: #1c1917;
 }
 
 .item {

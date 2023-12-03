@@ -76,8 +76,14 @@ function adjustRowColumn() {
 
   // changing the image position to move
   var root = document.querySelector(":root");
-  root.style.setProperty("--x", itemHeight + "px");
-  root.style.setProperty("--y", itemHeight + "px");
+  root.style.setProperty(
+    "--x",
+    (gridWidth < 760 ? itemHeight + 5 : itemHeight) + "px"
+  );
+  root.style.setProperty(
+    "--y",
+    (gridWidth < 760 ? itemHeight + 5 : itemHeight) + "px"
+  );
 }
 
 function imgSwapAnimation() {
